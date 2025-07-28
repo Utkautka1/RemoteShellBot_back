@@ -8,6 +8,12 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger';
 import filesRouter from './controllers/FilesController';
 import mediaRouter from './controllers/MediaController';
+import powerRouter from './controllers/PowerController';
+import processRouter from './controllers/ProcessController';
+import monitorRouter from './controllers/MonitorController';
+import logRouter from './controllers/LogController';
+import systemRouter from './controllers/SystemController';
+import browserRouter from './controllers/BrowserController';
 
 // Загружаем переменные окружения
 dotenv.config();
@@ -17,10 +23,16 @@ const app = express();
 // Включаем парсинг JSON
 app.use(express.json());
 
-// Подключаем роутер пользователей к express
+// Подключаем роутеры к express
 app.use('/api', userRouter);
 app.use('/api', filesRouter);
 app.use('/api', mediaRouter);
+app.use('/api', powerRouter);
+app.use('/api', processRouter);
+app.use('/api', monitorRouter);
+app.use('/api', logRouter);
+app.use('/api', systemRouter);
+app.use('/api', browserRouter);
 
 // Подключаем Swagger UI по маршруту /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
